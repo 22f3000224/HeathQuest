@@ -1,0 +1,8 @@
+{
+  "fox": { "x": 100, "y": 400, "width": 200, "height": 150, "rotation": 0, "zIndex": 10 },
+  "sleepCrystal": { "x": 200, "y": 200, "width": 150, "height": 200, "rotation": 0, "zIndex": 6 },
+  "waterFountain": { "x": 400, "y": 250, "width": 120, "height": 180, "rotation": 0, "zIndex": 6 },
+  "nutritionBasket": { "x": 800, "y": 220, "width": 160, "height": 160, "rotation": 0, "zIndex": 6 },
+  "energyCrystal": { "x": 600, "y": 200, "width": 140, "height": 200, "rotation": 0, "zIndex": 6 },
+  "moodLantern": { "x": 1000, "y": 180, "width": 120, "height": 220, "rotation": 0, "zIndex": 6 }
+}

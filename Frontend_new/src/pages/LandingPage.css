@@ -1,0 +1,567 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   LandingPage.css  —  HealthQuest  |  Fantasy Wellness App
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap');
+
+/* ── Root ─────────────────────────────────────────────────────────────────── */
+.lp-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #080318;
+  cursor: default;
+}
+
+/* ── Canvas ──────────────────────────────────────────────────────────────── */
+.lp-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── UI Overlay ──────────────────────────────────────────────────────────── */
+.lp-ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lp-ui--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Logo / Title ─────────────────────────────────────────────────────────── */
+.lp-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12vh;
+  transform: translateY(-8vh);
+  animation: lp-float 6s ease-in-out infinite;
+}
+
+.lp-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.lp-logo__leaf-inline {
+  /* removed - inline leaf was breaking logo */
+}
+
+.lp-logo__text {
+  margin: 0;
+  font-family: 'Playfair Display', 'Cinzel', serif;
+  font-size: clamp(52px, 6.5vw, 88px);
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  color: #f5e6c8;
+  background: linear-gradient(180deg, #fef8e8 0%, #f5e6c8 60%, #d4bc92 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 3px 0 rgba(0,0,0,.18), 0 10px 30px rgba(20,8,20,.4);
+  -webkit-text-stroke: 0.5px rgba(20,15,10,0.15);
+  transform: translateY(-4px);
+}
+
+/* "Health" slightly lighter, "Quest" slightly richer -- now unified */
+
+.lp-subtitle {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: clamp(17px, 2.4vw, 24px);
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(250,240,220,0.9);
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin: 8px 0 0 0;
+  text-shadow: 0 2px 10px rgba(10,6,6,0.7);
+  opacity: 0.92;
+  animation: lp-subtitle-pulse 6s ease-in-out infinite alternate;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.lp-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  pointer-events: all;
+  transform: translateY(-4vh);
+  animation: lp-buttons-in 1.8s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lp-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(180px, 22vw, 300px);
+  height: clamp(42px, 5.2vh, 56px);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lp-btn:hover,
+.lp-btn--hovered  { transform: scale(1.07); }
+.lp-btn:active    { transform: scale(0.96); }
+
+/* Primary — teal */
+.lp-btn--primary {
+  background: linear-gradient(180deg, #3fbfb3 0%, #2a9d8f 50%, #1e7c72 100%);
+  border: 2px solid rgba(240,200,140,0.8);
+  box-shadow:
+    0 6px 20px rgba(10,30,30,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -2px 8px rgba(0,0,0,0.15);
+  animation: lp-btn-pulse-teal 3s ease-in-out infinite;
+}
+.lp-btn--primary:hover,
+.lp-btn--primary.lp-btn--hovered {
+  box-shadow:
+    0 0 0 2px rgba(120, 240, 220, 0.9),
+    0 0 24px  rgba(70, 220, 200, 0.8),
+    0 0 60px  rgba(40, 185, 165, 0.5),
+    0 0 90px  rgba(25, 160, 140, 0.25),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+/* Secondary — dark amber */
+.lp-btn--secondary {
+  background: linear-gradient(180deg, rgba(30,20,12,0.9) 0%, rgba(18,12,8,0.95) 100%);
+  border: 2px solid rgba(160,120,70,0.75);
+  box-shadow: 0 6px 18px rgba(10,8,6,0.55), inset 0 1px 0 rgba(255,220,120,0.08);
+}
+.lp-btn--secondary:hover,
+.lp-btn--secondary.lp-btn--hovered {
+  background: linear-gradient(135deg, rgba(40,28,14,0.92) 0%, rgba(25,18,10,0.95) 100%);
+  box-shadow:
+    0 0 0 2px rgba(245, 205, 85, 0.9),
+    0 0 20px  rgba(225, 175, 65, 0.6),
+    0 0 50px  rgba(200, 145, 45, 0.3),
+    inset 0 1px 0 rgba(255,220,100,0.18);
+}
+
+/* subtle sunrise radial glow near horizon */
+.lp-root::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 30vh;
+  background: radial-gradient(ellipse at 50% 80%, rgba(255,200,120,0.12) 0%, rgba(255,160,60,0.06) 30%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glow sweep */
+.lp-btn__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 20%, rgba(255,245,200,0.28) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+.lp-btn--hovered .lp-btn__glow,
+.lp-btn:hover     .lp-btn__glow { opacity: 1; }
+
+/* Button text */
+.lp-btn__text {
+  position: relative;
+  z-index: 1;
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 245, 215, 0.98);
+  text-shadow: 0 2px 6px rgba(10,6,6,0.46);
+  white-space: nowrap;
+}
+.lp-btn--secondary .lp-btn__text {
+  color: rgba(225, 195, 125, 0.92);
+  text-shadow: 0 0 8px rgba(200, 155, 55, 0.48);
+}
+
+/* ── Keyframes ───────────────────────────────────────────────────────────── */
+@keyframes lp-float {
+  0%, 100% { transform: translateY(0);   }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes lp-leaf-glow {
+  0%   { filter: drop-shadow(0 0 6px  rgba(140,210,40,0.55)) drop-shadow(0 0 16px rgba(100,180,20,0.30)); }
+  100% { filter: drop-shadow(0 0 12px rgba(180,240,70,0.90)) drop-shadow(0 0 28px rgba(140,210,40,0.55)); }
+}
+
+@keyframes lp-title-glow {
+  0% {
+    filter:
+      drop-shadow(0 0 8px  rgba(255,210,80,0.55))
+      drop-shadow(0 0 22px rgba(220,150,25,0.38))
+      drop-shadow(0 0 45px rgba(200,100,10,0.18));
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 16px rgba(255,230,110,0.90))
+      drop-shadow(0 0 40px rgba(240,175,50,0.65))
+      drop-shadow(0 0 82px rgba(220,120,20,0.36));
+  }
+}
+
+@keyframes lp-subtitle-pulse {
+  0%   { opacity: 0.76; }
+  100% { opacity: 0.96; }
+}
+
+@keyframes lp-btn-pulse-teal {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px rgba(90,225,210,0.6),
+      0 0 16px rgba(50,200,180,0.45),
+      0 0 40px rgba(30,165,145,0.28),
+      inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px rgba(115,245,225,0.8),
+      0 0 26px rgba(75,220,200,0.65),
+      0 0 58px rgba(42,185,165,0.42),
+      inset 0 1px 0 rgba(255,255,255,0.22);
+  }
+}
+
+@keyframes lp-buttons-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .lp-ui              { padding-top: 7vh; }
+  .lp-logo__text      { font-size: clamp(36px, 11vw, 64px); }
+  .lp-logo__leaf-inline { width: 0.6em; height: 0.6em; }
+  .lp-subtitle        { font-size: 13px; padding: 0 18px; }
+  .lp-btn             { width: clamp(190px, 70vw, 290px); }
+}
+
+
+/* ===== Fantasy Refinement Patch ===== */
+.lp-emblem{
+  width:80px;height:80px;margin-bottom:16px;
+  animation:lp-emblem-float 7s ease-in-out infinite,lp-emblem-glow 3s ease-in-out infinite alternate;
+}
+.lp-emblem svg{
+  width:100%;height:100%;fill:#fef8e0;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))
+  drop-shadow(0 0 12px rgba(255,245,200,.75))
+  drop-shadow(0 0 30px rgba(255,230,150,.5));
+}
+.lp-logo__text{
+  animation: lp-title-breathe 6s ease-in-out infinite;
+}
+.lp-btn--primary::before{
+ content:'';position:absolute;inset:2px;border-radius:inherit;
+ background:linear-gradient(180deg,rgba(255,255,255,.3) 0%,transparent 45%);
+ pointer-events:none;
+}
+.lp-btn--secondary{
+ background:linear-gradient(180deg,rgba(45,30,18,.92),rgba(20,14,9,.96));
+}
+.lp-root::after{
+ content:'';
+ position:absolute;
+ inset:0;
+ background:radial-gradient(ellipse at center,rgba(255,255,255,.03),transparent 60%);
+ pointer-events:none;
+}
+@keyframes lp-emblem-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes lp-emblem-glow{from{opacity:.85}to{opacity:1}}
+@keyframes lp-title-breathe{
+0%,100%{filter:drop-shadow(0 0 12px rgba(255,220,120,.3));}
+50%{filter:drop-shadow(0 0 22px rgba(255,240,180,.55));}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Login Screen Styles
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  width: 90%;
+  background: rgba(8, 3, 24, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(245, 230, 200, 0.15);
+  padding: 40px 32px;
+  box-shadow: 
+    0 20px 50px rgba(8, 3, 24, 0.6),
+    inset 0 1px 0 rgba(255, 245, 215, 0.08);
+  pointer-events: all;
+  animation: login-fade-in 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.login-title {
+  font-family: 'Playfair Display', 'Cinzel', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 500;
+  color: #f5e6c8;
+  background: linear-gradient(180deg, #fef8e8 0%, #f5e6c8 60%, #d4bc92 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 12px 0 8px 0;
+  letter-spacing: 0.02em;
+}
+
+.login-subtitle {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(245, 230, 200, 0.8);
+  text-align: center;
+  margin: 0;
+}
+
+.login-tabs {
+  display: flex;
+  width: 100%;
+  background: rgba(20, 15, 10, 0.6);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(160, 120, 70, 0.3);
+}
+
+.login-tab {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: rgba(200, 175, 125, 0.7);
+  letter-spacing: 0.03em;
+}
+
+.login-tab.active {
+  background: linear-gradient(180deg, #3fbfb3 0%, #2a9d8f 50%, #1e7c72 100%);
+  color: rgba(255, 245, 215, 0.95);
+  box-shadow: 0 2px 8px rgba(63, 191, 179, 0.4);
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-label {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(245, 230, 200, 0.9);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.login-input {
+  padding: 12px 16px;
+  background: rgba(15, 10, 5, 0.7);
+  border: 1.5px solid rgba(160, 120, 70, 0.4);
+  border-radius: 10px;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 15px;
+  color: rgba(255, 245, 215, 0.95);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.login-input::placeholder {
+  color: rgba(200, 175, 125, 0.5);
+  font-style: italic;
+}
+
+.login-input:focus {
+  border-color: rgba(63, 191, 179, 0.8);
+  box-shadow: 
+    0 0 0 2px rgba(63, 191, 179, 0.2),
+    0 0 12px rgba(63, 191, 179, 0.3);
+  background: rgba(20, 15, 8, 0.8);
+}
+
+.companion-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.companion-card {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(15, 10, 5, 0.5);
+  border: 1.5px solid rgba(160, 120, 70, 0.3);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.companion-card:hover {
+  background: rgba(25, 18, 10, 0.7);
+  border-color: rgba(180, 140, 80, 0.5);
+}
+
+.companion-card.selected {
+  background: rgba(63, 191, 179, 0.15);
+  border-color: rgba(63, 191, 179, 0.6);
+  box-shadow: 0 0 8px rgba(63, 191, 179, 0.3);
+}
+
+.companion-input {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(160, 120, 70, 0.5);
+  border-radius: 50%;
+  margin-right: 12px;
+  position: relative;
+  cursor: pointer;
+}
+
+.companion-input:checked {
+  border-color: #3fbfb3;
+  background: #3fbfb3;
+}
+
+.companion-input:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.companion-content {
+  flex: 1;
+}
+
+.companion-name {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 245, 215, 0.95);
+  margin-bottom: 2px;
+}
+
+.companion-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(200, 175, 125, 0.7);
+}
+
+.login-error {
+  background: rgba(139, 69, 19, 0.3);
+  border: 1px solid rgba(205, 92, 92, 0.5);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: rgba(255, 182, 193, 0.9);
+  font-family: 'Crimson Pro', serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-submit {
+  margin-top: 8px;
+  height: 50px;
+}
+
+.login-footer {
+  font-family: 'Crimson Pro', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(200, 175, 125, 0.6);
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.4;
+}
+
+@keyframes login-fade-in {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+/* Mobile responsiveness for login */
+@media (max-width: 600px) {
+  .login-container {
+    max-width: 350px;
+    padding: 32px 24px;
+  }
+  
+  .login-title {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+  
+  .login-tab {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}

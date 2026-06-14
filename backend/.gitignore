@@ -1,0 +1,29 @@
+.env
+healthquest.db
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# Local dotenv overrides
+.env.local
+.env.*.local
+
+# Python test and typing caches
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+*.log
+
+# Editor swap/backup files
+*.swp
+*~
+
+# Local history
+.history/
+
+# OS files
+.DS_Store
+Thumbs.db
